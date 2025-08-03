@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Яблоки Голден - FreshMarket</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="logo">
+                    <h1>FreshMarket</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="index.html#products">Продукты</a></li>
+                    <li><a href="index.html#about">О нас</a></li>
+                    <li><a href="index.html#contact">Контакты</a></li>
+                    <li><a href="cart.html">Корзина</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="cart-btn" onclick="openCart()">
+                        <span class="cart-icon">🛒</span>
+                        <span class="cart-count">0</span>
+                    </button>
+                    <div class="user-menu" id="userMenu" style="display: none;">
+                        <button class="user-btn" onclick="toggleUserMenu()">
+                            <span class="user-icon">👤</span>
+                        </button>
+                        <div class="user-dropdown" id="userDropdown">
+                            <a href="profile.html" class="dropdown-item">Личный кабинет</a>
+                            <a href="#" class="dropdown-item" onclick="logout()">Выйти</a>
+                        </div>
+                    </div>
+                    <button class="login-btn" id="loginBtn" onclick="showLoginModal()">
+                        <span class="login-icon">🔑</span>
+                        Войти
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Product Section -->
+    <section class="product-section">
+        <div class="container">
+            <!-- Breadcrumbs -->
+            <div class="breadcrumbs">
+                <a href="index.html">Главная</a>
+                <span>→</span>
+                <a href="index.html#products">Продукты</a>
+                <span>→</span>
+                <span>Яблоки Голден</span>
+            </div>
+
+            <!-- Product Details -->
+            <div class="product-details">
+                <div class="product-gallery">
+                    <div class="main-image">
+                        <div class="product-emoji-large">🍎</div>
+                    </div>
+                    <div class="thumbnail-images">
+                        <div class="thumbnail active" data-image="🍎">
+                            <div class="thumbnail-emoji">🍎</div>
+                        </div>
+                        <div class="thumbnail" data-image="🍎">
+                            <div class="thumbnail-emoji">🍎</div>
+                        </div>
+                        <div class="thumbnail" data-image="🍎">
+                            <div class="thumbnail-emoji">🍎</div>
+                        </div>
+                        <div class="thumbnail" data-image="🍎">
+                            <div class="thumbnail-emoji">🍎</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-info-details">
+                    <h1 class="product-title">Яблоки Голден</h1>
+                    <div class="product-rating">
+                        <div class="stars">
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                            <span class="star">⭐</span>
+                        </div>
+                        <span class="rating-text">4.8 (127 отзывов)</span>
+                    </div>
+
+                    <div class="product-price-large">
+                        <span class="price-large">150 ₽</span>
+                        <span class="unit-large">/ кг</span>
+                    </div>
+
+                    <div class="product-description-full">
+                        <p>Сочные и сладкие яблоки сорта Голден Делишес, выращенные в экологически чистых условиях. Эти яблоки отличаются нежной мякотью, приятным ароматом и идеальным балансом сладости и кислоты.</p>
+                    </div>
+
+                    <div class="product-options">
+                        <div class="option-group">
+                            <label>Количество:</label>
+                            <div class="quantity-selector">
+                                <button class="qty-btn" onclick="changeQuantity(-1)">-</button>
+                                <input type="number" id="quantity" value="1" min="1" max="50">
+                                <button class="qty-btn" onclick="changeQuantity(1)">+</button>
+                            </div>
+                        </div>
+                        
+                        <div class="option-group">
+                            <label>Вес:</label>
+                            <div class="weight-options">
+                                <button class="weight-btn active" data-weight="1">1 кг</button>
+                                <button class="weight-btn" data-weight="2">2 кг</button>
+                                <button class="weight-btn" data-weight="5">5 кг</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-actions">
+                        <button class="btn btn-primary add-to-cart-large" onclick="addToCartFromProduct()">
+                            <span class="cart-icon">🛒</span>
+                            Добавить в корзину
+                        </button>
+                        <button class="btn btn-secondary wishlist-btn">
+                            <span class="heart-icon">❤️</span>
+                            В избранное
+                        </button>
+                    </div>
+
+                    <div class="product-features">
+                        <div class="feature">
+                            <span class="feature-icon">🚚</span>
+                            <span>Быстрая доставка</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">🌱</span>
+                            <span>100% органические</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">⭐</span>
+                            <span>Высшее качество</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Tabs -->
+            <div class="product-tabs">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" data-tab="description">Описание</button>
+                    <button class="tab-btn" data-tab="characteristics">Характеристики</button>
+                    <button class="tab-btn" data-tab="reviews">Отзывы</button>
+                    <button class="tab-btn" data-tab="nutrition">Пищевая ценность</button>
+                </div>
+
+                <div class="tab-content">
+                    <!-- Description Tab -->
+                    <div class="tab-panel active" id="description">
+                        <h3>Подробное описание</h3>
+                        <p>Яблоки Голден Делишес — один из самых популярных сортов яблок в мире. Этот сорт был выведен в США в конце XIX века и с тех пор завоевал сердца миллионов людей по всему миру.</p>
+                        
+                        <h4>Особенности сорта:</h4>
+                        <ul>
+                            <li><strong>Вкус:</strong> Сладкий с легкой кислинкой</li>
+                            <li><strong>Мякоть:</strong> Сочная, хрустящая, кремового цвета</li>
+                            <li><strong>Аромат:</strong> Нежный, приятный</li>
+                            <li><strong>Размер:</strong> Средний и крупный</li>
+                            <li><strong>Форма:</strong> Округлая, слегка коническая</li>
+                        </ul>
+
+                        <h4>Польза для здоровья:</h4>
+                        <p>Яблоки Голден богаты витаминами, минералами и антиоксидантами. Они содержат:</p>
+                        <ul>
+                            <li>Витамин C — укрепляет иммунитет</li>
+                            <li>Клетчатку — улучшает пищеварение</li>
+                            <li>Калий — поддерживает сердечно-сосудистую систему</li>
+                            <li>Антиоксиданты — защищают от свободных радикалов</li>
+                        </ul>
+
+                        <h4>Рекомендации по хранению:</h4>
+                        <p>Храните яблоки в прохладном месте при температуре 0-4°C. В таких условиях они могут сохранять свежесть до 6 месяцев.</p>
+                    </div>
+
+                    <!-- Characteristics Tab -->
+                    <div class="tab-panel" id="characteristics">
+                        <h3>Характеристики товара</h3>
+                        <div class="characteristics-grid">
+                            <div class="characteristic-item">
+                                <span class="char-label">Сорт:</span>
+                                <span class="char-value">Голден Делишес</span>
+                            </div>
+                            <div class="characteristic-item">
+                                <span class="char-label">Страна происхождения:</span>
+                                <span class="char-value">Россия</span>
+                            </div>
+                            <div class="characteristic-item">
+                                <span class="char-label">Регион выращивания:</span>
+                                <span class="char-value">Краснодарский край</span>
+                            </div>
+                            <div class="characteristic-item">
+                                <span class="char-label">Сезон сбора:</span>
+                                <span class="char-value">Сентябрь-Октябрь</span>
+                            </div>
+                            <div class="characteristic-item">
+                                <span class="char-label">Размер плодов:</span>
+                                <span class="char-value">Средний-крупный (70-90 мм)</span>
+                            </div>
+                            <div class="characteristic-item">
+                                <span class="char-label">Цвет кожуры:</span>
+                                <span class="char-value">Желто-зеленый</span>
+                            </div>
+                            <div class="characteristic-item">
+                                <span class="char-label">Мякоть:</span>
+                                <span class="char-value">Кремовая, сочная</span>
+                            </div>
+                            <div class="characteristic-item">
+                                <span class="char-label">Вкус:</span>
+                                <span class="char-value">Сладкий с кислинкой</span>
+                            </div>
+                            <div class="characteristic-item">
+                                <span class="char-label">Аромат:</span>
+                                <span class="char-value">Нежный, приятный</span>
+                            </div>
+                            <div class="characteristic-item">
+                                <span class="char-label">Срок хранения:</span>
+                                <span class="char-value">До 6 месяцев</span>
+                            </div>
+                            <div class="characteristic-item">
+                                <span class="char-label">Упаковка:</span>
+                                <span class="char-value">Экологичная картонная коробка</span>
+                            </div>
+                            <div class="characteristic-item">
+                                <span class="char-label">Вес упаковки:</span>
+                                <span class="char-value">1 кг, 2 кг, 5 кг</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Reviews Tab -->
+                    <div class="tab-panel" id="reviews">
+                        <h3>Отзывы покупателей</h3>
+                        <div class="reviews-summary">
+                            <div class="overall-rating">
+                                <div class="rating-big">4.8</div>
+                                <div class="stars-big">
+                                    <span class="star">⭐</span>
+                                    <span class="star">⭐</span>
+                                    <span class="star">⭐</span>
+                                    <span class="star">⭐</span>
+                                    <span class="star">⭐</span>
+                                </div>
+                                <div class="total-reviews">127 отзывов</div>
+                            </div>
+                            <div class="rating-bars">
+                                <div class="rating-bar">
+                                    <span>5 звезд</span>
+                                    <div class="bar"><div class="fill" style="width: 85%"></div></div>
+                                    <span>85%</span>
+                                </div>
+                                <div class="rating-bar">
+                                    <span>4 звезды</span>
+                                    <div class="bar"><div class="fill" style="width: 10%"></div></div>
+                                    <span>10%</span>
+                                </div>
+                                <div class="rating-bar">
+                                    <span>3 звезды</span>
+                                    <div class="bar"><div class="fill" style="width: 3%"></div></div>
+                                    <span>3%</span>
+                                </div>
+                                <div class="rating-bar">
+                                    <span>2 звезды</span>
+                                    <div class="bar"><div class="fill" style="width: 1%"></div></div>
+                                    <span>1%</span>
+                                </div>
+                                <div class="rating-bar">
+                                    <span>1 звезда</span>
+                                    <div class="bar"><div class="fill" style="width: 1%"></div></div>
+                                    <span>1%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="reviews-list">
+                            <div class="review-item">
+                                <div class="review-header">
+                                    <div class="reviewer-info">
+                                        <div class="reviewer-avatar">👤</div>
+                                        <div>
+                                            <div class="reviewer-name">Анна М.</div>
+                                            <div class="review-date">15.12.2024</div>
+                                        </div>
+                                    </div>
+                                    <div class="review-stars">
+                                        <span class="star">⭐</span>
+                                        <span class="star">⭐</span>
+                                        <span class="star">⭐</span>
+                                        <span class="star">⭐</span>
+                                        <span class="star">⭐</span>
+                                    </div>
+                                </div>
+                                <div class="review-text">
+                                    Отличные яблоки! Очень сочные и сладкие. Заказывала уже второй раз, качество стабильно высокое. Рекомендую!
+                                </div>
+                            </div>
+
+                            <div class="review-item">
+                                <div class="review-header">
+                                    <div class="reviewer-info">
+                                        <div class="reviewer-avatar">👤</div>
+                                        <div>
+                                            <div class="reviewer-name">Михаил К.</div>
+                                            <div class="review-date">12.12.2024</div>
+                                        </div>
+                                    </div>
+                                    <div class="review-stars">
+                                        <span class="star">⭐</span>
+                                        <span class="star">⭐</span>
+                                        <span class="star">⭐</span>
+                                        <span class="star">⭐</span>
+                                        <span class="star">⭐</span>
+                                    </div>
+                                </div>
+                                <div class="review-text">
+                                    Яблоки пришли в идеальном состоянии. Вкусные, хрустящие. Дети в восторге! Буду заказывать еще.
+                                </div>
+                            </div>
+
+                            <div class="review-item">
+                                <div class="review-header">
+                                    <div class="reviewer-info">
+                                        <div class="reviewer-avatar">👤</div>
+                                        <div>
+                                            <div class="reviewer-name">Елена В.</div>
+                                            <div class="review-date">10.12.2024</div>
+                                        </div>
+                                    </div>
+                                    <div class="review-stars">
+                                        <span class="star">⭐</span>
+                                        <span class="star">⭐</span>
+                                        <span class="star">⭐</span>
+                                        <span class="star">⭐</span>
+                                        <span class="star">⭐</span>
+                                    </div>
+                                </div>
+                                <div class="review-text">
+                                    Прекрасные яблоки! Использую для приготовления пирогов и соков. Аромат потрясающий!
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-secondary load-more-reviews">
+                            Показать еще отзывы
+                        </button>
+                    </div>
+
+                    <!-- Nutrition Tab -->
+                    <div class="tab-panel" id="nutrition">
+                        <h3>Пищевая ценность</h3>
+                        <div class="nutrition-info">
+                            <div class="nutrition-table">
+                                <div class="nutrition-row">
+                                    <span class="nutrient">Калорийность</span>
+                                    <span class="value">52 ккал</span>
+                                </div>
+                                <div class="nutrition-row">
+                                    <span class="nutrient">Белки</span>
+                                    <span class="value">0.3 г</span>
+                                </div>
+                                <div class="nutrition-row">
+                                    <span class="nutrient">Жиры</span>
+                                    <span class="value">0.2 г</span>
+                                </div>
+                                <div class="nutrition-row">
+                                    <span class="nutrient">Углеводы</span>
+                                    <span class="value">14 г</span>
+                                </div>
+                                <div class="nutrition-row">
+                                    <span class="nutrient">Клетчатка</span>
+                                    <span class="value">2.4 г</span>
+                                </div>
+                                <div class="nutrition-row">
+                                    <span class="nutrient">Сахар</span>
+                                    <span class="value">10.4 г</span>
+                                </div>
+                            </div>
+
+                            <div class="vitamins-minerals">
+                                <h4>Витамины и минералы (на 100 г):</h4>
+                                <div class="vitamins-grid">
+                                    <div class="vitamin-item">
+                                        <span class="vitamin-name">Витамин C</span>
+                                        <span class="vitamin-value">4.6 мг</span>
+                                    </div>
+                                    <div class="vitamin-item">
+                                        <span class="vitamin-name">Калий</span>
+                                        <span class="vitamin-value">107 мг</span>
+                                    </div>
+                                    <div class="vitamin-item">
+                                        <span class="vitamin-name">Кальций</span>
+                                        <span class="vitamin-value">6 мг</span>
+                                    </div>
+                                    <div class="vitamin-item">
+                                        <span class="vitamin-name">Железо</span>
+                                        <span class="vitamin-value">0.1 мг</span>
+                                    </div>
+                                    <div class="vitamin-item">
+                                        <span class="vitamin-name">Витамин A</span>
+                                        <span class="vitamin-value">3 мкг</span>
+                                    </div>
+                                    <div class="vitamin-item">
+                                        <span class="vitamin-name">Витамин E</span>
+                                        <span class="vitamin-value">0.18 мг</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Related Products -->
+            <div class="related-products">
+                <h3>Похожие товары</h3>
+                <div class="related-grid">
+                    <div class="related-product">
+                        <div class="related-image">
+                            <div class="related-emoji">🍊</div>
+                        </div>
+                        <h4>Апельсины</h4>
+                        <p class="related-price">200 ₽ / кг</p>
+                        <button class="btn btn-secondary">Подробнее</button>
+                    </div>
+                    <div class="related-product">
+                        <div class="related-image">
+                            <div class="related-emoji">🍌</div>
+                        </div>
+                        <h4>Бананы</h4>
+                        <p class="related-price">120 ₽ / кг</p>
+                        <button class="btn btn-secondary">Подробнее</button>
+                    </div>
+                    <div class="related-product">
+                        <div class="related-image">
+                            <div class="related-emoji">🍓</div>
+                        </div>
+                        <h4>Клубника</h4>
+                        <p class="related-price">350 ₽ / кг</p>
+                        <button class="btn btn-secondary">Подробнее</button>
+                    </div>
+                    <div class="related-product">
+                        <div class="related-image">
+                            <div class="related-emoji">🫐</div>
+                        </div>
+                        <h4>Черника</h4>
+                        <p class="related-price">400 ₽ / кг</p>
+                        <button class="btn btn-secondary">Подробнее</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>FreshMarket</h3>
+                    <p>Свежие овощи и фрукты для здорового питания</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Продукты</h4>
+                    <ul>
+                        <li><a href="index.html#products">Фрукты</a></li>
+                        <li><a href="index.html#products">Овощи</a></li>
+                        <li><a href="index.html#products">Ягоды</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="index.html#about">О нас</a></li>
+                        <li><a href="index.html#contact">Доставка</a></li>
+                        <li><a href="index.html#contact">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Социальные сети</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-link">📘</a>
+                        <a href="#" class="social-link">📷</a>
+                        <a href="#" class="social-link">🐦</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 FreshMarket. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="login-modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Вход в аккаунт</h2>
+                <button class="close-btn" onclick="closeLoginModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Пароль</label>
+                        <input type="password" name="password" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Войти</button>
+                        <button type="button" class="btn btn-secondary" onclick="showRegisterModal()">Регистрация</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="register-modal" id="registerModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Регистрация</h2>
+                <button class="close-btn" onclick="closeRegisterModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <form id="registerForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Имя *</label>
+                            <input type="text" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Фамилия *</label>
+                            <input type="text" name="lastName" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Email *</label>
+                        <input type="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Телефон *</label>
+                        <input type="tel" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Пароль *</label>
+                        <input type="password" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Подтвердите пароль *</label>
+                        <input type="password" name="confirmPassword" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+                        <button type="button" class="btn btn-secondary" onclick="showLoginModal()">Уже есть аккаунт</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="product.js"></script>
+</body>
+</html> 
