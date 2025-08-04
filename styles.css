@@ -45,6 +45,11 @@ body {
     font-weight: 700;
 }
 
+.logo img {
+    width: 300px;
+    height: auto;
+}
+
 .nav-menu {
     display: flex;
     list-style: none;
